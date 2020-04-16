@@ -7,6 +7,17 @@ const SearchParams = () => {
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = UseDropdown('Animal', 'dog', ANIMALS);
   const [breed, BreedDropdown, setBreed] = UseDropdown('Breed', '', breeds);
+  const [pets, setPets] = useState([]);
+
+  async function requestPets() {
+    const { animals } = await pet.animals({
+      location,
+      breed,
+      type: animal,
+    });
+
+    setPets(animals || []);
+  }
 
   // scheduled but will not run until after the first render
   useEffect(() => {
@@ -21,7 +32,12 @@ const SearchParams = () => {
 
   return (
     <div className='search-params'>
-      <form>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          requestPets();
+        }}
+      >
         <label htmlFor='location'>
           Location
           <input
