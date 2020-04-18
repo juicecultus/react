@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from '@reach/router';
-import { css } from '@emotion/core';
+import { css, keyframes } from '@emotion/core';
 import colors from './colors';
+
+const Spin = keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const NavBar = () => {
   const [padding, setPadding] = useState(15);
@@ -18,9 +24,11 @@ const NavBar = () => {
       <span
         css={css`
           font-size: 3rem;
+          display: inline-block;
 
           &:hover {
             text-decoration: underline;
+            animation: 1s ${Spin} linear infinite;
           }
         `}
         role='img'
