@@ -96,7 +96,9 @@ class Details extends React.Component<RouteComponentProps<{ id: string }>> {
   }
 }
 
-export default function DetailsWithErrorBoundary(props: RouteComponentProps<{ id: string }) {
+export default function DetailsWithErrorBoundary(
+  props: RouteComponentProps<{ id: string }>
+) {
   return (
     <ErrorBoundary>
       <Details {...props} />
